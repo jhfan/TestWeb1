@@ -7,7 +7,7 @@ public class JdbcUtil {
 	private static final String USERNAME="user_java";
 	private static final String PASSWORD="l19891013";
 	
-	public static Connection getConnection(){
+	public Connection getConnection(){
 		Connection conn=null;
 		try{
 			Class.forName(DRIVER);
