@@ -28,7 +28,7 @@ public class HelloDaoImpl implements HelloDao {
 		// TODO Auto-generated method stub
 		String sp="{?=call saveuser(?,?)}";
 		try{
-			Connection conn=JdbcUtil.getConnection();
+			Connection conn=util.getConnection();
 			CallableStatement cs=conn.prepareCall(sp);
 			cs.registerOutParameter(1,Types.INTEGER);
 			cs.setString(2, user.getName());
@@ -46,7 +46,7 @@ public class HelloDaoImpl implements HelloDao {
 		String sp="{?=call queryuser()}";
 		List<User> list=new ArrayList<User>();
 		try{
-			Connection conn=JdbcUtil.getConnection();
+			Connection conn=util.getConnection();
 			CallableStatement cs=conn.prepareCall(sp);
 			cs.registerOutParameter(1,OracleTypes.CURSOR);
 			cs.execute();
@@ -68,7 +68,7 @@ public class HelloDaoImpl implements HelloDao {
 	public void update(User user) {
 		// TODO Auto-generated method stub
 		try {
-			Connection conn = JdbcUtil.getConnection();
+			Connection conn = util.getConnection();
 			//String sp = "{?=call saveUser(?,?)}";
 			String sql = "update sample set age = ? where name = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class HelloDaoImpl implements HelloDao {
 	public void delete(User user) {
 		// TODO Auto-generated method stub
 		try {
-			Connection conn = JdbcUtil.getConnection();
+			Connection conn = util.getConnection();
 			//String sp = "{?=call saveUser(?,?)}";
 			String sql = "delete sample where name = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class HelloDaoImpl implements HelloDao {
 	public User findByName(String name) {
 		User user = new User();
 		try {
-			Connection conn = JdbcUtil.getConnection();
+			Connection conn = util.getConnection();
 			String sql = "select * from sample where name = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, name);
